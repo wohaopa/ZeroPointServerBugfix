@@ -10,13 +10,20 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = Bugfix.MODID, version = Tags.VERSION, name = "ZeroPointBugfix", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(
+    modid = Bugfix.MODID,
+    version = Tags.VERSION,
+    name = "ZeroPointBugfix",
+    acceptedMinecraftVersions = "[1.7.10]",
+    acceptableRemoteVersions = "*")
 public class Bugfix {
 
     public static final String MODID = "ZeroPointBugfix";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    @SidedProxy(clientSide = "com.github.zeropoint.bugfix.ClientProxy", serverSide = "com.github.zeropoint.bugfix.CommonProxy")
+    @SidedProxy(
+        clientSide = "com.github.zeropoint.bugfix.ClientProxy",
+        serverSide = "com.github.zeropoint.bugfix.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
