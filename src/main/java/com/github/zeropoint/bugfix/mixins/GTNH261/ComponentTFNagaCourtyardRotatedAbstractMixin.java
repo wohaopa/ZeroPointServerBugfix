@@ -1,4 +1,4 @@
-package com.github.zeropoint.bugfix.mixins;
+package com.github.zeropoint.bugfix.mixins.GTNH261;
 
 import net.minecraftforge.common.util.ForgeDirection;
 
