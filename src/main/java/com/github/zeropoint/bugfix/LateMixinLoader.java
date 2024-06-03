@@ -19,6 +19,7 @@ public class LateMixinLoader implements ILateMixinLoader {
     public List<String> getMixins(Set<String> loadedMods) {
         List<String> mixins = new ArrayList<>();
         mixins.add("CraftingCPUClusterMixin");
+        mixins.add("ComponentTFNagaCourtyardRotatedAbstractMixin");
         return mixins;
     }
 }

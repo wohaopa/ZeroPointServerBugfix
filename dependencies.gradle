@@ -36,4 +36,5 @@
 dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
     implementation("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-357-GTNH:dev")
+    implementation("com.github.GTNewHorizons:twilightforest:2.5.25:dev")
 }
