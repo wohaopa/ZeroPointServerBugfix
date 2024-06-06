@@ -9,6 +9,7 @@ import com.gtnewhorizon.gtnhmixins.LateMixin;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 
 @LateMixin
 public class LateMixinLoader implements ILateMixinLoader {
@@ -34,10 +35,22 @@ public class LateMixinLoader implements ILateMixinLoader {
             switch (modid) {
                 // 261
                 case "appliedenergistics2":
-                    if (version.equals("rv3-beta-357-GTNH")) mixins.add("GTNH261.CraftingCPUClusterMixin");
+                    if (version.equals("rv3-beta-357-GTNH")) {
+                        mixins.add("GTNH261.CraftingCPUClusterMixin");
+                    }
                     break;
                 case "TwilightForest":
-                    if (version.equals("2.5.25")) mixins.add("GTNH261.ComponentTFNagaCourtyardRotatedAbstractMixin");
+                    if (version.equals("2.5.25")) {
+                        mixins.add("GTNH261.ComponentTFNagaCourtyardRotatedAbstractMixin");
+                    }
+                    break;
+                case "bartworks":
+                    if (version.equals("0.9.26")) {
+                        if (FMLLaunchHandler.side()
+                            .isClient()) {
+                            mixins.add("GTNH261.RendererGlasBlockMixin");
+                        }
+                    }
                     break;
                 default:
             }
