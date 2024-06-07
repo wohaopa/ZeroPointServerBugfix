@@ -39,7 +39,9 @@ dependencies {
 
     compileOnly("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-357-GTNH:dev") // 261
     compileOnly("com.github.GTNewHorizons:twilightforest:2.5.25:dev") // 261
-    compileOnly('com.github.GTNewHorizons:bartworks:0.9.26:dev')
+    compileOnly('com.github.GTNewHorizons:bartworks:0.9.26:dev') // 261
+    implementation('com.github.GTNewHorizons:FindIt:1.2.5:dev') // 261
+
 
     compileOnly("com.github.GTNewHorizons:TecTech:5.2.23:dev") // 251
     compileOnly("com.github.GTNewHorizons:NewHorizonsCoreMod:2.3.54:dev") // 251

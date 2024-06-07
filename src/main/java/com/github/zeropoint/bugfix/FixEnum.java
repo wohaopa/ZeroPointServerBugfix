@@ -10,24 +10,18 @@ import cpw.mods.fml.relauncher.FMLLaunchHandler;
 
 public enum FixEnum {
 
-    // spotless off
+    // spotless:off
+    // GTNH 261
     ae2(Phase.Late, "appliedenergistics2", "rv3-beta-357-GTNH", Side.Both, tL("GTNH261.CraftingCPUClusterMixin")),
-    TwilightForest(Phase.Late, "TwilightForest", "2.5.25", Side.Both,
-        tL("GTNH261.ComponentTFNagaCourtyardRotatedAbstractMixin")),
+    TwilightForest(Phase.Late, "TwilightForest", "2.5.25", Side.Both, tL("GTNH261.ComponentTFNagaCourtyardRotatedAbstractMixin")),
     bartworks(Phase.Late, "bartworks", "0.9.26", Side.ClientOnly, tL("GTNH261.RendererGlasBlockMixin")),
-    inputfix(Phase.Normal, "minecraft", modContainer -> {
-        try {
-            Class.forName("lain.mods.inputfix.InputFix");
-            return false;
-        } catch (ClassNotFoundException ignored) {}
-        try {
-            Class.forName("me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod");
-            return false;
-        } catch (ClassNotFoundException ignored) {}
-        return true;
-    }, tL("GuiScreenMixin")),;
+    findit(Phase.Late, "findit", "1.2.5", Side.Both, tL("GTNH261.ItemFindServiceMixin")),
 
-    // spotless on
+    // minecraft
+    inputfix(Phase.Normal, "minecraft", modContainer -> { try { Class.forName("lain.mods.inputfix.InputFix"); return false; } catch (ClassNotFoundException ignored) {} try { Class.forName("me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod"); return false; } catch (ClassNotFoundException ignored) {} return true; }, tL("GuiScreenMixin")),;
+
+
+    // spotless:on
     public enum Phase {
         Late,
         Normal,
