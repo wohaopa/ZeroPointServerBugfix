@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,14 +49,14 @@ public class ModsUtil {
         }
     }
 
-    public static void dumpMods(List<ModContainer> mods) {
+    public static void dumpMods(Collection<ModContainer> mods) {
         if (Boolean.getBoolean("ZeroPointBugfix.dumpMods")) {
             Bugfix.LOG.info("Staring dump mods list...");
             List<ModsPair> modPairs = new ArrayList<>();
             for (ModContainer mod : mods) {
                 if (mod.getModId()
                     .equals(Bugfix.MODID)) continue;
-                modPairs.add(new ModsPair(mod.getModId(), mod.getVersion()));
+                modPairs.add(new ModsPair(mod.getModId(), mod.getVersion(), mod.getName()));
             }
             modPairs.sort(Comparator.comparing(o -> o.modid));
             Gson gson = new GsonBuilder().setPrettyPrinting()
@@ -121,7 +122,7 @@ public class ModsUtil {
         }
 
         for (ModContainer mod : mods) {
-            addedMods.add(new ModsPair(mod.getModId(), mod.getVersion()));
+            addedMods.add(new ModsPair(mod.getModId(), mod.getVersion(), mod.getName()));
         }
 
         List<ModsPair> removedMods = new ArrayList<>(missingMods);
@@ -179,11 +180,13 @@ public class ModsUtil {
     public static class ModsPair {
 
         public String modid;
+        public String name;
         public String version;
 
-        public ModsPair(String modid, String version) {
+        public ModsPair(String modid, String version, String name) {
             this.modid = modid;
             this.version = version;
+            this.name = name;
         }
 
         @Override
