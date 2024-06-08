@@ -6,7 +6,7 @@
 		"description": "ZeroPoint Server Fix Mod",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
-		"url": "",
+		"url": "https://github.com/wohaopa/ZeroPointServerBugfix/",
 		"updateUrl": "",
 		"authorList": ["初夏同学"],
 		"credits": "",
