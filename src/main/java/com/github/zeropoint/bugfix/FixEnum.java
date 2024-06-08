@@ -16,11 +16,12 @@ public enum FixEnum {
     TwilightForest(Phase.Late, "TwilightForest", "2.5.25", Side.Both, tL("GTNH261.ComponentTFNagaCourtyardRotatedAbstractMixin")),
     bartworks(Phase.Late, "bartworks", "0.9.26", Side.ClientOnly, tL("GTNH261.RendererGlasBlockMixin")),
     findit(Phase.Late, "findit", "1.2.5", Side.Both, tL("GTNH261.ItemFindServiceMixin")),
+    gt5u(Phase.Late, "gregtech", "5.09.45.168", Side.Both, tL("GTNH261.GT_Tool_WrenchMixin")),
 
     // minecraft
-    inputfix(Phase.Normal, "minecraft", modContainer -> { try { Class.forName("lain.mods.inputfix.InputFix"); return false; } catch (ClassNotFoundException ignored) {} try { Class.forName("me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod"); return false; } catch (ClassNotFoundException ignored) {} return true; }, tL("GuiScreenMixin")),;
+    inputfix(Phase.Normal, "minecraft", modContainer -> { try { Class.forName("lain.mods.inputfix.InputFix"); return false; } catch (ClassNotFoundException ignored) {} try { Class.forName("me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod"); return false; } catch (ClassNotFoundException ignored) {} return true; }, tL("GuiScreenMixin")),
 
-
+    ;
     // spotless:on
     public enum Phase {
         Late,
