@@ -1,5 +1,8 @@
 package com.github.zeropoint.bugfix;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ChatComponentText;
+
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 
 public class ClientProxy extends CommonProxy {
@@ -16,4 +19,8 @@ public class ClientProxy extends CommonProxy {
         inputDeviceUpdateThread.start();
     }
 
+    @Override
+    protected void msg(String msg) {
+        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(msg));
+    }
 }

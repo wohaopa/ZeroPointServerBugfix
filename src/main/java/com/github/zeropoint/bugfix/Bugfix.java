@@ -8,7 +8,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 
 @Mod(
     modid = Bugfix.MODID,
@@ -46,8 +46,7 @@ public class Bugfix {
     }
 
     @Mod.EventHandler
-    // register server commands in this event handler (Remove if not needed)
-    public void serverStarting(FMLServerStartingEvent event) {
-        proxy.serverStarting(event);
+    public void serverStarting(FMLServerStartedEvent event) {
+        proxy.serverStarted(event);
     }
 }
