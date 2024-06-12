@@ -25,21 +25,17 @@ public class CommonProxy {
     // register server commands in this event handler (Remove if not needed)
     public void serverStarted(FMLServerStartedEvent event) {
         if (Updater.canUpdate) {
-            msg("==========================================");
-            msg("ZeroPoint Bugfix has a new version! ");
-            msg("Current: " + Tags.VERSION + " -> Latest: " + Updater.newVersion);
+            Bugfix.LOG.info("==========================================");
+            Bugfix.LOG.info("ZeroPoint Bugfix has a new version! ");
+            Bugfix.LOG.info("Current: " + Tags.VERSION + " -> Latest: " + Updater.newVersion);
             if (Updater.downloaded) {
-                msg("It has been automatically downloaded to the mods directory");
-                msg("and will be replaced automatically next time you start.");
-                msg("New Mod: " + Updater.newMod.getAbsolutePath());
+                Bugfix.LOG.info("It has been automatically downloaded to the mods directory");
+                Bugfix.LOG.info("and will be replaced automatically next time you start.");
+                Bugfix.LOG.info("New Mod: " + Updater.newMod.getAbsolutePath());
             } else {
-                msg("Automatic download is not available, please update manually.");
+                Bugfix.LOG.info("Automatic download is not available, please update manually.");
             }
-            msg("==========================================");
+            Bugfix.LOG.info("==========================================");
         }
-    }
-
-    protected void msg(String msg) {
-        Bugfix.LOG.info(msg);
     }
 }

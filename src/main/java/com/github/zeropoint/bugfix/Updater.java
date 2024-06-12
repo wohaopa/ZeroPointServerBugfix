@@ -30,6 +30,7 @@ public class Updater extends Thread {
 
     @Override
     public void run() {
+
         try {
             String latestVersion = getLatestVersion();
             if (!Tags.VERSION.equals(latestVersion)) {
@@ -42,7 +43,7 @@ public class Updater extends Thread {
                     .getFile();
                 int index = classPath.indexOf(".jar!");
 
-                oldMod = new File(classPath.substring(0, index + 4));
+                oldMod = new File(classPath.substring(6, index + 4));
 
                 if (oldMod.exists()) {
                     SAVE_DIR = oldMod.getParentFile();
