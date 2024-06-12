@@ -12,7 +12,8 @@ public class CommonProxy {
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
-        if (!((boolean) Launch.blackboard.getOrDefault("fml.deobfuscatedEnvironment", false))) Updater.checkUpdate();
+        if (Updater.debug || !((boolean) Launch.blackboard.getOrDefault("fml.deobfuscatedEnvironment", false)))
+            Updater.checkUpdate();
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)

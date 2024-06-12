@@ -18,6 +18,7 @@ public class Updater extends Thread {
 
     private static final String ASSET_DOWNLOAD_URL = "https://github.com/wohaopa/ZeroPointServerBugfix/releases/download/%s/ZeroPointBugfix-%s.jar";
     private static final String GITHUB_API_URL = "https://api.github.com/repos/wohaopa/ZeroPointServerBugfix/releases/latest";
+    public static boolean debug = true;
 
     public static void checkUpdate() {
         new Updater().start();
@@ -35,22 +36,24 @@ public class Updater extends Thread {
                 canUpdate = true;
                 newVersion = latestVersion;
 
-                String jarFilePath = Updater.class.getProtectionDomain()
+                String classPath = Updater.class.getProtectionDomain()
                     .getCodeSource()
                     .getLocation()
-                    .toURI()
-                    .getPath();
-                if (jarFilePath == null) {
-                    SAVE_DIR = new File(Launch.minecraftHome, "autoDownloadDir");
-                } else {
-                    oldMod = new File(jarFilePath);
+                    .getFile();
+                int index = classPath.indexOf(".jar!");
+
+                oldMod = new File(classPath.substring(0, index + 4));
+
+                if (oldMod.exists()) {
                     SAVE_DIR = oldMod.getParentFile();
+                } else {
+                    SAVE_DIR = new File(Launch.minecraftHome, "autoDownloadDir");
                 }
 
                 Bugfix.LOG.info("New version available: " + latestVersion);
                 downloadFile(String.format(ASSET_DOWNLOAD_URL, latestVersion, latestVersion));
                 downloaded = true;
-                if (oldMod != null) oldMod.deleteOnExit();
+                if (oldMod != null && oldMod.exists()) oldMod.deleteOnExit();
                 Bugfix.LOG.info("Update downloaded.");
             } else {
                 Bugfix.LOG.info("You are using the latest version.");
