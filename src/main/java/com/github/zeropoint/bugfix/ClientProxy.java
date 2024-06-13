@@ -1,12 +1,10 @@
 package com.github.zeropoint.bugfix;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.util.ChatComponentText;
 
-import com.google.common.eventbus.Subscribe;
-
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 public class ClientProxy extends CommonProxy {
@@ -21,7 +19,9 @@ public class ClientProxy extends CommonProxy {
         super.postInit(event);
         inputDeviceUpdateThread = new InputDeviceUpdateThread();
         inputDeviceUpdateThread.start();
-        FMLCommonHandler.instance().bus().register(this);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(this);
     }
 
     @SubscribeEvent
