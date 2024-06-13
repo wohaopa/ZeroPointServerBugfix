@@ -3,6 +3,7 @@ package com.github.zeropoint.bugfix;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -54,7 +55,26 @@ public class Updater extends Thread {
                 Bugfix.LOG.info("New version available: " + latestVersion);
                 downloadFile(String.format(ASSET_DOWNLOAD_URL, latestVersion, latestVersion));
                 downloaded = true;
-                if (oldMod != null && oldMod.exists()) oldMod.deleteOnExit();
+                if (oldMod != null && oldMod.exists()) {
+                    oldMod.deleteOnExit();
+                    Runtime.getRuntime()
+                        .addShutdownHook(new Thread(() -> {
+                            if (oldMod.exists() && !oldMod.delete()) {
+                                File file = new File(SAVE_DIR, "delete.bat");
+                                createDeleteScript(file);
+                                try {
+                                    Runtime.getRuntime()
+                                        .exec(
+                                            "cmd /c start " + file.getAbsolutePath()
+                                                + " \""
+                                                + oldMod.getAbsolutePath()
+                                                + "\"");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }));
+                }
                 Bugfix.LOG.info("Update downloaded.");
             } else {
                 Bugfix.LOG.info("You are using the latest version.");
@@ -129,4 +149,26 @@ public class Updater extends Thread {
         httpConn.disconnect();
     }
 
+    private static final String cmdScript = """
+        @echo off
+        echo Wait to delete the file
+        ping 127.0.0.1 -n 2 > nul
+        if exist "%~1" (
+            del "%~1"
+            echo Deleted file %~1
+        ) else (
+            echo File %~1 does not exist
+        )
+        echo Press any key to exit
+        pause > nul
+        del "%~f0" & exit
+        """;
+
+    private static void createDeleteScript(File file) {
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(cmdScript);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
