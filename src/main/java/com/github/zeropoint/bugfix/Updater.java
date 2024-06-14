@@ -19,7 +19,7 @@ public class Updater extends Thread {
 
     private static final String ASSET_DOWNLOAD_URL = "https://github.com/wohaopa/ZeroPointServerBugfix/releases/download/%s/ZeroPointBugfix-%s.jar";
     private static final String GITHUB_API_URL = "https://api.github.com/repos/wohaopa/ZeroPointServerBugfix/releases/latest";
-    public static boolean debug = true;
+    public static boolean debug = false;
 
     public static void checkUpdate() {
         new Updater().start();
