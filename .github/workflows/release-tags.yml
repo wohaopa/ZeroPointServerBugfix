@@ -57,13 +57,14 @@ jobs:
           for file in ./build/libs/*.jar; do
             if [ -f "$file" ]; then
               echo "Encrypting $file..."
-              jarsigner -verbose -keystore ZeroPointBugfix.jks -storepass $CERTIFICATE_PASSWORD $file ZeroPointBugfix
+              jarsigner -verbose -keystore ZeroPointBugfix.jks -storepass $CERTIFICATE_PASSWORD -keypass $CERTIFICATE_PASSWORD_KEY $file ZeroPointBugfix
             fi
           done
         shell: bash
         continue-on-error: true
         env:
           CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
+          CERTIFICATE_PASSWORD_KEY: ${{ secrets.CERTIFICATE_PASSWORD_KEY }}
           CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
 
 
