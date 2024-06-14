@@ -65,7 +65,7 @@ jobs:
         env:
           CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
           CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
-        if: ${{ secrets.CERTIFICATE_BASE64 != '' && secrets.CERTIFICATE_PASSWORD != '' }}
+
 
       - name: Release under current tag
         run: |
